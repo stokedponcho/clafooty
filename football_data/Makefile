@@ -1,4 +1,5 @@
 clean:
+	cd tests &&	docker-compose down
 	cargo clean -v
 
 build:

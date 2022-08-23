@@ -4,8 +4,8 @@ use crate::domain;
 
 pub fn map_match(dto: &dtos::Match) -> domain::Match {
     let map_score = |dto: &dtos::Score| domain::Score {
-        home_team: dto.home_team,
-        away_team: dto.away_team,
+        home_team: dto.home,
+        away_team: dto.away,
     };
 
     domain::Match {
@@ -16,6 +16,7 @@ pub fn map_match(dto: &dtos::Match) -> domain::Match {
             Some(dtos::MatchStatus::PAUSED) => Some(domain::MatchStatus::Paused),
             Some(dtos::MatchStatus::POSTPONED) => Some(domain::MatchStatus::Postponed),
             Some(dtos::MatchStatus::SCHEDULED) => Some(domain::MatchStatus::Scheduled),
+            Some(dtos::MatchStatus::TIMED) => Some(domain::MatchStatus::Scheduled),
             Some(dtos::MatchStatus::CANCELLED) => Some(domain::MatchStatus::Cancelled),
             _ => None,
         },

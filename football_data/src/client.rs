@@ -27,7 +27,7 @@ impl Client {
             .unwrap();
         let base_url = match base_url {
             Some(url) => url,
-            None => Url::parse("https://api.football-data.org/v2/").unwrap(),
+            None => Url::parse("https://api.football-data.org/v4/").unwrap(),
         };
 
         Ok(Client {

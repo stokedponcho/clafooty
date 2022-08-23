@@ -9,7 +9,7 @@ pub struct Competition {
 
 #[derive(Debug)]
 pub struct FixtureCollection {
-    pub count: u32,
+    pub count: u8,
     pub matches: Vec<Match>,
 }
 

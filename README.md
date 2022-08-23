@@ -1,6 +1,10 @@
 # clafooty
 
+Command line and footy!
+
+## How to install
+
 ```bash
-cargo install --path .
+make install
 ```
 

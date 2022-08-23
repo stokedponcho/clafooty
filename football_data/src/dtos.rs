@@ -3,6 +3,22 @@ use serde::Deserialize;
 
 #[derive(Deserialize, Debug)]
 #[serde(rename_all = "camelCase")]
+pub struct ErrorMessage {
+    pub error_code: u16,
+    pub message: String,
+}
+
+#[derive(Deserialize, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct ResultSet {
+    pub count: u16,
+    pub first: String,
+    pub last: String,
+    pub played: u16,
+}
+
+#[derive(Deserialize, Debug)]
+#[serde(rename_all = "camelCase")]
 pub struct Competition {
     pub id: u16,
     pub name: String,
@@ -19,21 +35,23 @@ pub struct Season {
 
 #[derive(Deserialize, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct FixtureCollection {
-    pub count: u32,
+pub struct MatchCollection {
+    pub result_set: ResultSet,
     pub matches: Vec<Match>,
 }
 
 #[derive(Deserialize, Debug)]
 pub enum MatchStatus {
     SCHEDULED,
+    TIMED,
     #[allow(non_camel_case_types)]
     IN_PLAY,
     PAUSED,
     FINISHED,
+    SUSPENDED,
     POSTPONED,
     CANCELLED,
-    TIMED,
+    AWARDED,
 }
 
 #[derive(Deserialize, Debug)]
@@ -58,21 +76,14 @@ pub struct ScoreCard {
 #[derive(Deserialize, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct Score {
-    pub home_team: Option<u8>,
-    pub away_team: Option<u8>,
+    pub home: Option<u8>,
+    pub away: Option<u8>,
 }
 
 #[derive(Deserialize, Debug)]
 pub struct Team {
     pub id: u16,
     pub name: String,
-}
-
-#[derive(Deserialize, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct ErrorMessage {
-    pub error_code: u16,
-    pub message: String,
 }
 
 #[derive(Deserialize, Debug)]

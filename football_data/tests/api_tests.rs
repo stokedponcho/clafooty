@@ -5,7 +5,7 @@ use football_data::client::Client;
 fn client() -> Client {
     Client::new(
         "SOME-AUTH-TOKEN",
-        Some(Url::parse("http://localhost:8489/v2/").unwrap()),
+        Some(Url::parse("http://localhost:8489/").unwrap()),
     )
     .unwrap()
 }
@@ -19,14 +19,14 @@ fn get_competitions() {
 
 #[test]
 fn get_competition_fixtures() {
-    let result = client().get_competition_fixtures(1, 1);
+    let result = client().get_competition_matches(1, 1);
 
     assert!(result.is_ok());
 }
 
 #[test]
-fn get_fixtures() {
-    let result = client().get_fixtures();
+fn get_matches() {
+    let result = client().get_matches();
 
     assert!(result.is_ok());
 }

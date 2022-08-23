@@ -1,21 +1,30 @@
 {
-  "count": 3,
   "filters": {
     "dateFrom": "2022-08-23",
-    "dateTo": "2022-08-23",
+    "dateTo": "2022-08-24",
     "permission": "TIER_ONE"
+  },
+  "resultSet": {
+    "count": 3,
+    "competitions": "CL",
+    "first": "2022-08-23",
+    "last": "2022-08-23",
+    "played": 0
   },
   "matches": [
     {
-      "id": 426170,
+      "area": {
+        "id": 2077,
+        "name": "Europe",
+        "code": "EUR",
+        "flag": "https://crests.football-data.org/EUR.svg"
+      },
       "competition": {
         "id": 2001,
         "name": "UEFA Champions League",
-        "area": {
-          "name": "Europe",
-          "code": "EUR",
-          "ensignUrl": "https://crests.football-data.org/EUR.svg"
-        }
+        "code": "CL",
+        "type": "CUP",
+        "emblem": "https://crests.football-data.org/CL.png"
       },
       "season": {
         "id": 1491,
@@ -24,112 +33,57 @@
         "currentMatchday": 3,
         "winner": null
       },
-      "utcDate": "2022-08-23T19:00:00Z",
-      "status": "SCHEDULED",
-      "matchday": null,
-      "stage": "PLAYOFF_ROUND",
-      "group": null,
-      "lastUpdated": "2022-08-12T10:43:02Z",
-      "odds": {
-        "msg": "Activate Odds-Package in User-Panel to retrieve odds."
-      },
-      "score": {
-        "winner": null,
-        "duration": "REGULAR",
-        "fullTime": {
-          "homeTeam": null,
-          "awayTeam": null
-        },
-        "halfTime": {
-          "homeTeam": null,
-          "awayTeam": null
-        },
-        "extraTime": {
-          "homeTeam": null,
-          "awayTeam": null
-        },
-        "penalties": {
-          "homeTeam": null,
-          "awayTeam": null
-        }
-      },
-      "homeTeam": {
-        "id": 1903,
-        "name": "Sport Lisboa e Benfica"
-      },
-      "awayTeam": {
-        "id": 842,
-        "name": "FK Dynamo Kyiv"
-      },
-      "referees": []
-    },
-    {
       "id": 426171,
-      "competition": {
-        "id": 2001,
-        "name": "UEFA Champions League",
-        "area": {
-          "name": "Europe",
-          "code": "EUR",
-          "ensignUrl": "https://crests.football-data.org/EUR.svg"
-        }
-      },
-      "season": {
-        "id": 1491,
-        "startDate": "2022-06-21",
-        "endDate": "2023-06-10",
-        "currentMatchday": 3,
-        "winner": null
-      },
       "utcDate": "2022-08-23T19:00:00Z",
-      "status": "SCHEDULED",
+      "status": "TIMED",
       "matchday": null,
       "stage": "PLAYOFF_ROUND",
       "group": null,
       "lastUpdated": "2022-08-12T10:43:02Z",
-      "odds": {
-        "msg": "Activate Odds-Package in User-Panel to retrieve odds."
-      },
-      "score": {
-        "winner": null,
-        "duration": "REGULAR",
-        "fullTime": {
-          "homeTeam": null,
-          "awayTeam": null
-        },
-        "halfTime": {
-          "homeTeam": null,
-          "awayTeam": null
-        },
-        "extraTime": {
-          "homeTeam": null,
-          "awayTeam": null
-        },
-        "penalties": {
-          "homeTeam": null,
-          "awayTeam": null
-        }
-      },
       "homeTeam": {
         "id": 7283,
-        "name": "FK Crvena Zvezda"
+        "name": "FK Crvena Zvezda",
+        "shortName": "Crvena Zvedza",
+        "tla": "CRV",
+        "crest": "https://crests.football-data.org/7283.svg"
       },
       "awayTeam": {
         "id": 884,
-        "name": "Maccabi Haifa FC"
+        "name": "Maccabi Haifa FC",
+        "shortName": "Maccabi Haifa",
+        "tla": "MHA",
+        "crest": "https://crests.football-data.org/884.png"
+      },
+      "score": {
+        "winner": null,
+        "duration": "REGULAR",
+        "fullTime": {
+          "home": null,
+          "away": null
+        },
+        "halfTime": {
+          "home": null,
+          "away": null
+        }
+      },
+      "odds": {
+        "msg": "Activate Odds-Package in User-Panel to retrieve odds."
       },
       "referees": []
     },
     {
-      "id": 426172,
+      "area": {
+        "id": 2077,
+        "name": "Europe",
+        "code": "EUR",
+        "flag": "https://crests.football-data.org/EUR.svg"
+      },
       "competition": {
         "id": 2001,
         "name": "UEFA Champions League",
-        "area": {
-          "name": "Europe",
-          "code": "EUR",
-          "ensignUrl": "https://crests.football-data.org/EUR.svg"
-        }
+        "code": "CL",
+        "type": "CUP",
+        "emblem": "https://crests.football-data.org/CL.png"
       },
       "season": {
         "id": 1491,
@@ -138,42 +92,100 @@
         "currentMatchday": 3,
         "winner": null
       },
+      "id": 426172,
       "utcDate": "2022-08-23T19:00:00Z",
-      "status": "SCHEDULED",
+      "status": "TIMED",
       "matchday": null,
       "stage": "PLAYOFF_ROUND",
       "group": null,
       "lastUpdated": "2022-08-12T10:43:02Z",
-      "odds": {
-        "msg": "Activate Odds-Package in User-Panel to retrieve odds."
+      "homeTeam": {
+        "id": 1881,
+        "name": "FC Viktoria Plzeň",
+        "shortName": "Viktoria Plzeň",
+        "tla": "PLZ",
+        "crest": "https://crests.football-data.org/1881.png"
+      },
+      "awayTeam": {
+        "id": 611,
+        "name": "Qarabağ Ağdam FK",
+        "shortName": "Qarabağ Ağdam",
+        "tla": "QAR",
+        "crest": "https://crests.football-data.org/611.png"
       },
       "score": {
         "winner": null,
         "duration": "REGULAR",
         "fullTime": {
-          "homeTeam": null,
-          "awayTeam": null
+          "home": null,
+          "away": null
         },
         "halfTime": {
-          "homeTeam": null,
-          "awayTeam": null
-        },
-        "extraTime": {
-          "homeTeam": null,
-          "awayTeam": null
-        },
-        "penalties": {
-          "homeTeam": null,
-          "awayTeam": null
+          "home": null,
+          "away": null
         }
       },
+      "odds": {
+        "msg": "Activate Odds-Package in User-Panel to retrieve odds."
+      },
+      "referees": []
+    },
+    {
+      "area": {
+        "id": 2077,
+        "name": "Europe",
+        "code": "EUR",
+        "flag": "https://crests.football-data.org/EUR.svg"
+      },
+      "competition": {
+        "id": 2001,
+        "name": "UEFA Champions League",
+        "code": "CL",
+        "type": "CUP",
+        "emblem": "https://crests.football-data.org/CL.png"
+      },
+      "season": {
+        "id": 1491,
+        "startDate": "2022-06-21",
+        "endDate": "2023-06-10",
+        "currentMatchday": 3,
+        "winner": null
+      },
+      "id": 426170,
+      "utcDate": "2022-08-23T19:00:00Z",
+      "status": "TIMED",
+      "matchday": null,
+      "stage": "PLAYOFF_ROUND",
+      "group": null,
+      "lastUpdated": "2022-08-12T10:43:02Z",
       "homeTeam": {
-        "id": 1881,
-        "name": "FC Viktoria Plzeň"
+        "id": 1903,
+        "name": "Sport Lisboa e Benfica",
+        "shortName": "SL Benfica",
+        "tla": "BEN",
+        "crest": "https://crests.football-data.org/1903.png"
       },
       "awayTeam": {
-        "id": 611,
-        "name": "Qarabağ Ağdam FK"
+        "id": 842,
+        "name": "FK Dynamo Kyiv",
+        "shortName": "Dynamo Kyiv",
+        "tla": "DYN",
+        "crest": "https://crests.football-data.org/842.png"
+      },
+      "score": {
+        "winner": null,
+        "duration": "REGULAR",
+        "fullTime": {
+          "home": null,
+          "away": null
+        },
+        "halfTime": {
+          "home": null,
+          "away": null
+        }
+      },
+      "odds": {
+        "msg": "Activate Odds-Package in User-Panel to retrieve odds."
       },
       "referees": []
     }

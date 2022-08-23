@@ -1,7 +1,7 @@
 {
   "request": {
     "method": "GET",
-    "urlPath": "/v2/invalid-api-token"
+    "urlPath": "/invalid-api-token"
   },
   "response": {
     "status": 400,

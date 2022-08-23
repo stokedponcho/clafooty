@@ -2,7 +2,7 @@
   "priority": 99,
   "request": {
     "method": "GET",
-    "urlPathPattern": "/v2/competitions/([0-9a-zA-Z/-]+)"
+    "urlPathPattern": "/competitions/([0-9a-zA-Z/-]+)"
   },
   "response": {
     "status": 200,

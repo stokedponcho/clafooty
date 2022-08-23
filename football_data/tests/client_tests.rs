@@ -13,5 +13,5 @@ fn get_with_invalid_auth_token() {
 }
 
 fn base_url() -> Option<Url> {
-    Some(Url::parse("http://localhost:8489/v2/").unwrap())
+    Some(Url::parse("http://localhost:8489/").unwrap())
 }

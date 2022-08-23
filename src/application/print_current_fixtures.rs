@@ -16,17 +16,16 @@ pub fn print_current_fixtures(client: football_data::client::Client, competition
         .collect();
 
     competitions.iter().for_each(|competition| {
-        let fixtures = client
-            .get_competition_fixtures(competition.id, competition.current_match_day.unwrap())
+        let dto = client
+            .get_competition_matches(competition.id, competition.current_match_day.unwrap())
             .unwrap_or_else(|error| panic!("{}", error.message));
-        let matches: Vec<domain::Match> = fixtures
+        let matches: Vec<domain::Match> = dto
             .matches
             .iter()
             .map(|dto| -> domain::Match { map_match(dto) })
             .collect();
-
         let collection = domain::FixtureCollection {
-            count: fixtures.count,
+            count: dto.result_set.count as u8,
             matches,
         };
 

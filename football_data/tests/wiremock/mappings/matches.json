@@ -2,7 +2,7 @@
   "priority": 99,
   "request": {
     "method": "GET",
-    "urlPath": "/v2/matches"
+    "urlPath": "/matches"
   },
   "response": {
     "status": 200,
