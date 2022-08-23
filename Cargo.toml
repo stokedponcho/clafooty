@@ -7,3 +7,6 @@ edition = "2021"
 
 [dependencies]
 football_data = { path = "football_data" }
+termcolor = { version = "1.1" }
+clap = { version =  "3.2.16", features = ["derive"] }
+chrono = { version = "0.4" }
