@@ -28,7 +28,7 @@ struct Opts {
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     let opts = Opts::parse();
     let configuration = Configuration::new();
-    let client = Client::new(&configuration.token).unwrap();
+    let client = Client::new(&configuration.token, None).unwrap();
 
     match opts.subcmd {
         SubCommand::Matchday => print_current_fixtures(client, configuration.competitions),

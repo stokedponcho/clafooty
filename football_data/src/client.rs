@@ -9,12 +9,11 @@ pub struct Client {
 }
 
 impl Client {
-    pub fn new(auth_token: &str) -> Result<Self, String> {
+    pub fn new(auth_token: &str, base_url: Option<Url>) -> Result<Self, String> {
         if auth_token.trim().is_empty() {
             return Err(format!("Invalid authentication token: {}", auth_token));
         }
 
-        let base_url = Url::parse("https://api.football-data.org/v2/").unwrap();
         let mut headers = header::HeaderMap::new();
 
         headers.insert(
@@ -26,6 +25,10 @@ impl Client {
             .default_headers(headers)
             .build()
             .unwrap();
+        let base_url = match base_url {
+            Some(url) => url,
+            None => Url::parse("https://api.football-data.org/v2/").unwrap(),
+        };
 
         Ok(Client {
             inner_client,
@@ -65,11 +68,11 @@ mod test {
 
     #[test]
     fn test_empty_token() {
-        assert!(Client::new("   ").is_err());
+        assert!(Client::new("   ", None).is_err());
     }
 
     #[test]
     fn test_valid_token() {
-        assert!(Client::new("a-token").is_err() == false);
+        assert!(Client::new("a-token", None).is_ok());
     }
 }

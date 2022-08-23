@@ -1,0 +1,181 @@
+{
+  "count": 3,
+  "filters": {
+    "dateFrom": "2022-08-23",
+    "dateTo": "2022-08-23",
+    "permission": "TIER_ONE"
+  },
+  "matches": [
+    {
+      "id": 426170,
+      "competition": {
+        "id": 2001,
+        "name": "UEFA Champions League",
+        "area": {
+          "name": "Europe",
+          "code": "EUR",
+          "ensignUrl": "https://crests.football-data.org/EUR.svg"
+        }
+      },
+      "season": {
+        "id": 1491,
+        "startDate": "2022-06-21",
+        "endDate": "2023-06-10",
+        "currentMatchday": 3,
+        "winner": null
+      },
+      "utcDate": "2022-08-23T19:00:00Z",
+      "status": "SCHEDULED",
+      "matchday": null,
+      "stage": "PLAYOFF_ROUND",
+      "group": null,
+      "lastUpdated": "2022-08-12T10:43:02Z",
+      "odds": {
+        "msg": "Activate Odds-Package in User-Panel to retrieve odds."
+      },
+      "score": {
+        "winner": null,
+        "duration": "REGULAR",
+        "fullTime": {
+          "homeTeam": null,
+          "awayTeam": null
+        },
+        "halfTime": {
+          "homeTeam": null,
+          "awayTeam": null
+        },
+        "extraTime": {
+          "homeTeam": null,
+          "awayTeam": null
+        },
+        "penalties": {
+          "homeTeam": null,
+          "awayTeam": null
+        }
+      },
+      "homeTeam": {
+        "id": 1903,
+        "name": "Sport Lisboa e Benfica"
+      },
+      "awayTeam": {
+        "id": 842,
+        "name": "FK Dynamo Kyiv"
+      },
+      "referees": []
+    },
+    {
+      "id": 426171,
+      "competition": {
+        "id": 2001,
+        "name": "UEFA Champions League",
+        "area": {
+          "name": "Europe",
+          "code": "EUR",
+          "ensignUrl": "https://crests.football-data.org/EUR.svg"
+        }
+      },
+      "season": {
+        "id": 1491,
+        "startDate": "2022-06-21",
+        "endDate": "2023-06-10",
+        "currentMatchday": 3,
+        "winner": null
+      },
+      "utcDate": "2022-08-23T19:00:00Z",
+      "status": "SCHEDULED",
+      "matchday": null,
+      "stage": "PLAYOFF_ROUND",
+      "group": null,
+      "lastUpdated": "2022-08-12T10:43:02Z",
+      "odds": {
+        "msg": "Activate Odds-Package in User-Panel to retrieve odds."
+      },
+      "score": {
+        "winner": null,
+        "duration": "REGULAR",
+        "fullTime": {
+          "homeTeam": null,
+          "awayTeam": null
+        },
+        "halfTime": {
+          "homeTeam": null,
+          "awayTeam": null
+        },
+        "extraTime": {
+          "homeTeam": null,
+          "awayTeam": null
+        },
+        "penalties": {
+          "homeTeam": null,
+          "awayTeam": null
+        }
+      },
+      "homeTeam": {
+        "id": 7283,
+        "name": "FK Crvena Zvezda"
+      },
+      "awayTeam": {
+        "id": 884,
+        "name": "Maccabi Haifa FC"
+      },
+      "referees": []
+    },
+    {
+      "id": 426172,
+      "competition": {
+        "id": 2001,
+        "name": "UEFA Champions League",
+        "area": {
+          "name": "Europe",
+          "code": "EUR",
+          "ensignUrl": "https://crests.football-data.org/EUR.svg"
+        }
+      },
+      "season": {
+        "id": 1491,
+        "startDate": "2022-06-21",
+        "endDate": "2023-06-10",
+        "currentMatchday": 3,
+        "winner": null
+      },
+      "utcDate": "2022-08-23T19:00:00Z",
+      "status": "SCHEDULED",
+      "matchday": null,
+      "stage": "PLAYOFF_ROUND",
+      "group": null,
+      "lastUpdated": "2022-08-12T10:43:02Z",
+      "odds": {
+        "msg": "Activate Odds-Package in User-Panel to retrieve odds."
+      },
+      "score": {
+        "winner": null,
+        "duration": "REGULAR",
+        "fullTime": {
+          "homeTeam": null,
+          "awayTeam": null
+        },
+        "halfTime": {
+          "homeTeam": null,
+          "awayTeam": null
+        },
+        "extraTime": {
+          "homeTeam": null,
+          "awayTeam": null
+        },
+        "penalties": {
+          "homeTeam": null,
+          "awayTeam": null
+        }
+      },
+      "homeTeam": {
+        "id": 1881,
+        "name": "FC Viktoria Plzeň"
+      },
+      "awayTeam": {
+        "id": 611,
+        "name": "Qarabağ Ağdam FK"
+      },
+      "referees": []
+    }
+  ]
+}

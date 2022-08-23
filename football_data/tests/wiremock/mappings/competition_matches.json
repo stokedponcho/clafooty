@@ -1,0 +1,14 @@
+{
+  "priority": 1,
+  "request": {
+    "method": "GET",
+    "urlPattern": "/v2/competitions/([0-9a-zA-Z/-]+)/matches\\?matchday=([0-9a-zA-Z]+)"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "bodyFileName": "competition_matches.json"
+  }
+}

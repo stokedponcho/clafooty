@@ -1,0 +1,14 @@
+{
+  "priority": 99,
+  "request": {
+    "method": "GET",
+    "urlPath": "/v2/matches"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "bodyFileName": "matches.json"
+  }
+}
