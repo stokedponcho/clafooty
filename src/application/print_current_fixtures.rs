@@ -13,13 +13,13 @@ pub fn print_current_fixtures(client: football_data::client::Client, competition
         .map(|dto| domain::Competition {
             id: dto.id,
             name: dto.name,
-            current_match_day: dto.current_season.unwrap().current_matchday,
+            current_match_day: Some(dto.current_season.unwrap().current_matchday),
         })
         .collect();
 
     competitions.iter().for_each(|competition| {
         let fixtures = client
-            .get_competition_fixtures(competition.id, competition.current_match_day)
+            .get_competition_fixtures(competition.id, competition.current_match_day.unwrap())
             .unwrap_or_else(|error| panic!("{}", error.message));
         let matches: Vec<domain::Match> = fixtures
             .matches

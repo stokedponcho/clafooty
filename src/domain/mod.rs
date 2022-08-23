@@ -1,11 +1,13 @@
 use chrono::{DateTime, Utc};
 
+#[derive(Debug)]
 pub struct Competition {
     pub id: u16,
     pub name: String,
-    pub current_match_day: u8,
+    pub current_match_day: Option<u8>,
 }
 
+#[derive(Debug)]
 pub struct FixtureCollection {
     pub count: u32,
     pub matches: Vec<Match>,
@@ -41,4 +43,24 @@ pub struct ScoreCard {
 pub struct Score {
     pub home_team: Option<u8>,
     pub away_team: Option<u8>,
+}
+
+#[derive(Debug)]
+pub struct StandingCollection {
+    pub competition: self::Competition,
+    pub table: Vec<Standing>,
+}
+
+#[derive(Debug)]
+pub struct Standing {
+    pub position: u8,
+    pub team: String,
+    pub played_games: u8,
+    pub won: u8,
+    pub draw: u8,
+    pub lost: u8,
+    pub points: u8,
+    pub goals_for: u8,
+    pub goals_against: u8,
+    pub goal_difference: i8,
 }

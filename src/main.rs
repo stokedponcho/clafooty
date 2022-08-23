@@ -6,6 +6,7 @@ mod display;
 mod domain;
 
 use application::print_current_fixtures::print_current_fixtures;
+use application::print_standings::print_standings;
 use clap::Parser;
 use configuration::Configuration;
 use football_data::client::Client;
@@ -30,6 +31,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     match opts.subcmd {
         SubCommand::Matchday => print_current_fixtures(client, configuration.competitions),
+        SubCommand::Standings => print_standings(client, configuration.competitions),
         _ => panic!("Not implemented yet."),
     };
 
