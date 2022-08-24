@@ -1,6 +1,7 @@
 use football_data::client::Client;
 
-use crate::domain::{Competition, Standing, StandingCollection};
+use crate::application::mappers::map_competition;
+use crate::domain::{Standing, StandingCollection};
 
 pub fn print_standings(client: Client, competition_ids: Vec<u16>) {
     competition_ids.into_iter().for_each(|competition_id| {
@@ -8,11 +9,7 @@ pub fn print_standings(client: Client, competition_ids: Vec<u16>) {
             .get_standings(competition_id)
             .unwrap_or_else(|error| panic!("{}", error.message));
         let standings = StandingCollection {
-            competition: Competition {
-                id: standings_dto.competition.id,
-                name: standings_dto.competition.name,
-                current_match_day: None,
-            },
+            competition: map_competition(&standings_dto.competition),
             table: standings_dto.standings[0]
                 .table
                 .iter()

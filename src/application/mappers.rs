@@ -14,15 +14,7 @@ pub fn map_fixtures(dto: dtos::MatchCollection) -> Vec<FixtureCollection> {
         })
         .iter()
         .map(|comp| FixtureCollection {
-            count: dto.result_set.count as u8,
-            competition: Competition {
-                id: comp.id,
-                name: comp.name.to_string(),
-                current_match_day: match &comp.current_season {
-                    Some(s) => Some(s.current_matchday),
-                    None => None,
-                },
-            },
+            competition: map_competition(comp),
             matches: dto
                 .matches
                 .iter()
@@ -31,6 +23,17 @@ pub fn map_fixtures(dto: dtos::MatchCollection) -> Vec<FixtureCollection> {
                 .collect(),
         })
         .collect()
+}
+
+pub fn map_competition(dto: &dtos::Competition) -> Competition {
+    Competition {
+        id: dto.id,
+        name: dto.name.to_string(),
+        current_match_day: match &dto.current_season {
+            Some(s) => Some(s.current_matchday),
+            None => None,
+        },
+    }
 }
 
 pub fn map_match(dto: &dtos::Match) -> Match {
@@ -72,7 +75,6 @@ mod test {
         assert_eq!(
             vec![
                 FixtureCollection {
-                    count: 0,
                     competition: Competition {
                         id: 1,
                         name: "competition 1".to_string(),
@@ -81,7 +83,6 @@ mod test {
                     matches: vec![create_match()],
                 },
                 FixtureCollection {
-                    count: 0,
                     competition: Competition {
                         id: 2,
                         name: "competition 2".to_string(),
@@ -183,52 +184,6 @@ mod test {
                     home: Some(0),
                 },
             },
-        }
-    }
-
-    impl PartialEq<domain::FixtureCollection> for domain::FixtureCollection {
-        fn eq(&self, other: &domain::FixtureCollection) -> bool {
-            self.count == other.count
-                && self.competition == other.competition
-                && self.matches == other.matches
-        }
-    }
-
-    impl PartialEq<domain::Competition> for domain::Competition {
-        fn eq(&self, other: &domain::Competition) -> bool {
-            self.id == other.id
-                && self.name == other.name
-                && self.current_match_day == other.current_match_day
-        }
-    }
-
-    impl PartialEq<domain::Match> for domain::Match {
-        fn eq(&self, other: &domain::Match) -> bool {
-            self.utc_date == other.utc_date
-                && self.status == other.status
-                && self.home_team == other.home_team
-                && self.away_team == other.away_team
-                && self.score == other.score
-        }
-    }
-
-    impl PartialEq<domain::MatchStatus> for domain::MatchStatus {
-        fn eq(&self, other: &domain::MatchStatus) -> bool {
-            core::mem::discriminant(self) == core::mem::discriminant(other)
-        }
-    }
-
-    impl PartialEq<domain::ScoreCard> for domain::ScoreCard {
-        fn eq(&self, other: &domain::ScoreCard) -> bool {
-            self.winner == other.winner
-                && self.half_time == other.half_time
-                && self.full_time == other.full_time
-        }
-    }
-
-    impl PartialEq<domain::Score> for domain::Score {
-        fn eq(&self, other: &domain::Score) -> bool {
-            self.home_team == other.home_team && self.away_team == other.away_team
         }
     }
 }
