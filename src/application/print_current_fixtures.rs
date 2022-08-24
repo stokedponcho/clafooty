@@ -1,4 +1,7 @@
-use crate::{application::mappers::map_match, domain};
+use crate::{
+    application::mappers::map_match,
+    domain::{self, Competition},
+};
 
 pub fn print_current_fixtures(client: football_data::client::Client, competition_ids: Vec<u16>) {
     let competitions: Vec<domain::Competition> = competition_ids
@@ -27,6 +30,11 @@ pub fn print_current_fixtures(client: football_data::client::Client, competition
         let collection = domain::FixtureCollection {
             count: dto.result_set.count as u8,
             matches,
+            competition: Competition {
+                current_match_day: None,
+                id: 0,
+                name: "".to_string(),
+            },
         };
 
         println!("{}", competition.name);

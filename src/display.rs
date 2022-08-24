@@ -7,6 +7,8 @@ impl fmt::Display for FixtureCollection {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         let mut stdout = StandardStream::stdout(ColorChoice::Auto);
 
+        writeln!(f, "{}", self.competition.name).ok();
+
         self.matches.iter().for_each(|game| {
             stdout
                 .set_color(ColorSpec::new().set_fg(Some(Color::Cyan)))

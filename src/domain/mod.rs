@@ -10,6 +10,7 @@ pub struct Competition {
 #[derive(Debug)]
 pub struct FixtureCollection {
     pub count: u8,
+    pub competition: Competition,
     pub matches: Vec<Match>,
 }
 

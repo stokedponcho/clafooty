@@ -59,6 +59,7 @@ pub enum MatchStatus {
 pub struct Match {
     pub id: u32,
     pub utc_date: DateTime<Utc>,
+    pub competition: Competition,
     pub status: Option<MatchStatus>,
     pub home_team: Team,
     pub away_team: Team,
