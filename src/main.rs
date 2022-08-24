@@ -1,4 +1,8 @@
+extern crate clap;
 extern crate football_data;
+
+use clap::{Parser, Subcommand};
+use football_data::client::Client;
 
 mod application;
 mod configuration;
@@ -8,37 +12,50 @@ mod domain;
 use application::print_current_fixtures::print_current_fixtures;
 use application::print_standings::print_standings;
 use application::print_today_fixtures::print_today_fixtures;
-use clap::Parser;
 use configuration::Configuration;
-use football_data::client::Client;
-
-#[derive(Parser)]
-enum SubCommand {
-    Matchday,  // List current season's current day for favourite competitions.
-    Today,     // List today's matches.
-    Standings, // Show current season's standings as of date
-}
 
 #[derive(Parser)]
 struct Opts {
     #[clap(subcommand)]
-    subcmd: SubCommand,
+    command: Command,
+}
+
+#[derive(Subcommand)]
+enum Command {
+    #[clap(about = "Show current season's matchday for competition")]
+    Matchday {
+        #[clap(short, long, value_parser, value_name = "COMPETITION ID")]
+        competition: u16,
+        // defaults to latest matchday
+        #[clap(short, long, value_parser, value_name = "MATCHDAY")]
+        matchday: Option<u8>,
+    },
+    #[clap(about = "Show current season's standings as of today for a competition")]
+    Standings {
+        #[clap(short, long, value_parser, value_name = "COMPETITION ID")]
+        competition: u16,
+    },
+    #[clap(about = "Shows today's matches for all available competitions")]
+    Today,
 }
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     let opts = Opts::parse();
 
-    run(opts.subcmd)
+    run(opts.command)
 }
 
-fn run(command: SubCommand) -> Result<(), Box<dyn std::error::Error>> {
+fn run(command: Command) -> Result<(), Box<dyn std::error::Error>> {
     let configuration = Configuration::new();
     let client = Client::new(&configuration.token, None).unwrap();
 
     match command {
-        SubCommand::Matchday => print_current_fixtures(client, configuration.competitions),
-        SubCommand::Standings => print_standings(client, configuration.competitions),
-        SubCommand::Today => print_today_fixtures(client),
+        Command::Matchday {
+            competition,
+            matchday,
+        } => print_current_fixtures(client, competition, matchday),
+        Command::Standings { competition } => print_standings(client, competition),
+        Command::Today => print_today_fixtures(client),
     };
 
     Ok(())
@@ -51,18 +68,27 @@ mod test {
     #[test]
     #[ignore]
     fn matchday() {
-        assert!(run(SubCommand::Matchday).is_ok());
+        assert!(run(Command::Matchday {
+            competition: 2021,
+            matchday: None
+        })
+        .is_ok());
+        assert!(run(Command::Matchday {
+            competition: 2021,
+            matchday: Some(1)
+        })
+        .is_ok());
     }
 
     #[test]
     #[ignore]
     fn standings() {
-        assert!(run(SubCommand::Standings).is_ok());
+        assert!(run(Command::Standings { competition: 2021 }).is_ok());
     }
 
     #[test]
     #[ignore]
     fn today() {
-        assert!(run(SubCommand::Today).is_ok());
+        assert!(run(Command::Today).is_ok());
     }
 }

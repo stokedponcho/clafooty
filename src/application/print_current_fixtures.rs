@@ -1,31 +1,28 @@
-use crate::domain;
+use crate::application::mappers::map_fixtures;
 
 use super::mappers::map_competition;
-use super::mappers::map_match;
 
-pub fn print_current_fixtures(client: football_data::client::Client, competition_ids: Vec<u16>) {
-    competition_ids
-        .iter()
-        .map(|c| {
-            client
-                .get_competition(*c)
-                .unwrap_or_else(|error| panic!("{}", error.message))
-        })
-        .map(|dto| map_competition(&dto))
-        .for_each(|competition| {
-            let dto = client
-                .get_competition_matches(competition.id, competition.current_match_day.unwrap())
+pub fn print_current_fixtures(
+    client: football_data::client::Client,
+    competition_id: u16,
+    matchday: Option<u8>,
+) {
+    let matchday = match matchday {
+        Some(value) => value,
+        None => {
+            let competition = client
+                .get_competition(competition_id)
                 .unwrap_or_else(|error| panic!("{}", error.message));
-            let matches: Vec<domain::Match> = dto
-                .matches
-                .iter()
-                .map(|dto| -> domain::Match { map_match(dto) })
-                .collect();
-            let collection = domain::FixtureCollection {
-                matches,
-                competition,
-            };
+            let competition = map_competition(&competition);
+            competition.current_match_day.unwrap()
+        }
+    };
 
-            println!("{}", collection);
-        });
+    let matches = client
+        .get_competition_matches(competition_id, matchday)
+        .unwrap_or_else(|error| panic!("{}", error.message));
+
+    for f in map_fixtures(matches).as_slice() {
+        println!("{}", f);
+    }
 }
