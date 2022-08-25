@@ -126,9 +126,9 @@ mod test {
             map_fixtures(dtos::MatchCollection {
                 result_set: dtos::ResultSet {
                     count: 0,
-                    first: "".to_string(),
-                    last: "".to_string(),
-                    played: 0
+                    first: None,
+                    last: None,
+                    played: None
                 },
                 matches: vec![
                     create_dto_match_with_competition(dtos::Competition {

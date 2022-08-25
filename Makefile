@@ -5,7 +5,7 @@ clean:
 build:
 	cargo build
 
-run:
+run: build
 	cargo run
 
 test: build
