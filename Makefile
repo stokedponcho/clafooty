@@ -11,6 +11,7 @@ run: build
 test: build
 	cargo test
 	cd football_data && make test
+	cd sport_data && make test
 
 test-acceptance: build
 	cargo test -- --ignored
