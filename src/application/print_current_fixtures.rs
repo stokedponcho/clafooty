@@ -14,7 +14,7 @@ pub fn print_current_fixtures(
                 .get_competition(competition_id)
                 .unwrap_or_else(|error| panic!("{}", error.message));
             let competition = map_competition(&competition);
-            competition.current_match_day.unwrap()
+            competition.current_matchday.unwrap()
         }
     };
 

@@ -7,7 +7,15 @@ impl fmt::Display for FixtureCollection {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         let mut stdout = StandardStream::stdout(ColorChoice::Auto);
 
-        writeln!(f, "{}", self.competition.name).ok();
+        write!(f, "{}", self.competition.name).ok();
+        write!(f, " (").ok();
+        write!(f, "{}", self.stage).ok();
+
+        if let Some(matchday) = self.matchday {
+            write!(f, " - matchday {}", matchday).ok();
+        }
+
+        writeln!(f, ")").ok();
 
         self.matches.iter().for_each(|game| {
             stdout

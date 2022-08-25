@@ -12,9 +12,9 @@ pub struct ErrorMessage {
 #[serde(rename_all = "camelCase")]
 pub struct ResultSet {
     pub count: u16,
-    pub first: String,
-    pub last: String,
-    pub played: u16,
+    pub first: Option<String>,
+    pub last: Option<String>,
+    pub played: Option<u16>,
 }
 
 #[derive(Deserialize, Debug)]
@@ -41,10 +41,10 @@ pub struct MatchCollection {
 }
 
 #[derive(Deserialize, Debug)]
+#[allow(non_camel_case_types)]
 pub enum MatchStatus {
     SCHEDULED,
     TIMED,
-    #[allow(non_camel_case_types)]
     IN_PLAY,
     PAUSED,
     FINISHED,
@@ -60,6 +60,9 @@ pub struct Match {
     pub id: u32,
     pub utc_date: DateTime<Utc>,
     pub competition: Competition,
+    pub season: Season,
+    pub stage: String,
+    pub matchday: Option<u8>,
     pub status: Option<MatchStatus>,
     pub home_team: Team,
     pub away_team: Team,

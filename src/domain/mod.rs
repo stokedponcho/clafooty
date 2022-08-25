@@ -1,16 +1,18 @@
 use chrono::{DateTime, Utc};
 
-#[derive(Debug, PartialEq)]
+#[derive(Debug, PartialEq, Clone)]
 pub struct Competition {
     pub id: u16,
     pub name: String,
-    pub current_match_day: Option<u8>,
+    pub current_matchday: Option<u8>,
 }
 
 #[derive(Debug, PartialEq)]
 pub struct FixtureCollection {
     pub competition: Competition,
     pub matches: Vec<Match>,
+    pub matchday: Option<u8>,
+    pub stage: String,
 }
 
 #[derive(Debug, PartialEq)]
