@@ -8,6 +8,7 @@ mod application;
 mod configuration;
 mod display;
 mod domain;
+mod scraper;
 
 use application::print_current_fixtures::print_current_fixtures;
 use application::print_standings::print_standings;
@@ -54,7 +55,7 @@ fn run(command: Command) -> Result<(), Box<dyn std::error::Error>> {
             competitions,
             matchday,
         } => print_current_fixtures(client, competitions, matchday),
-        Command::Standings { competitions } => print_standings(client, competitions),
+        Command::Standings { competitions } => print_standings(configuration, competitions),
         Command::Today => print_today_fixtures(client),
     };
 

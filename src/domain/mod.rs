@@ -61,7 +61,7 @@ pub struct Standing {
     pub won: u8,
     pub draw: u8,
     pub lost: u8,
-    pub points: u8,
+    pub points: i8,
     pub goals_for: u8,
     pub goals_against: u8,
     pub goal_difference: i8,
