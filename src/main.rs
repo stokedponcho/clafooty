@@ -25,7 +25,7 @@ enum Command {
     #[clap(about = "Show current season's matchday for competition")]
     Matchday {
         #[clap(short, long, value_parser, value_name = "COMPETITION ID")]
-        competition: u16,
+        competitions: Vec<u16>,
         // defaults to latest matchday
         #[clap(short, long, value_parser, value_name = "MATCHDAY")]
         matchday: Option<u8>,
@@ -33,7 +33,7 @@ enum Command {
     #[clap(about = "Show current season's standings as of today for a competition")]
     Standings {
         #[clap(short, long, value_parser, value_name = "COMPETITION ID")]
-        competition: u16,
+        competitions: Vec<u16>,
     },
     #[clap(about = "Shows today's matches for all available competitions")]
     Today,
@@ -51,10 +51,10 @@ fn run(command: Command) -> Result<(), Box<dyn std::error::Error>> {
 
     match command {
         Command::Matchday {
-            competition,
+            competitions,
             matchday,
-        } => print_current_fixtures(client, competition, matchday),
-        Command::Standings { competition } => print_standings(client, competition),
+        } => print_current_fixtures(client, competitions, matchday),
+        Command::Standings { competitions } => print_standings(client, competitions),
         Command::Today => print_today_fixtures(client),
     };
 
@@ -69,12 +69,12 @@ mod test {
     #[ignore]
     fn matchday() {
         assert!(run(Command::Matchday {
-            competition: 2021,
+            competitions: vec![2021],
             matchday: None
         })
         .is_ok());
         assert!(run(Command::Matchday {
-            competition: 2021,
+            competitions: vec![2021],
             matchday: Some(1)
         })
         .is_ok());
@@ -83,7 +83,10 @@ mod test {
     #[test]
     #[ignore]
     fn standings() {
-        assert!(run(Command::Standings { competition: 2021 }).is_ok());
+        assert!(run(Command::Standings {
+            competitions: vec![2021]
+        })
+        .is_ok());
     }
 
     #[test]

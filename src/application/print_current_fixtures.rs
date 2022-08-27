@@ -4,25 +4,30 @@ use super::mappers::map_competition;
 
 pub fn print_current_fixtures(
     client: football_data::client::Client,
-    competition_id: u16,
+    competition_ids: Vec<u16>,
     matchday: Option<u8>,
 ) {
-    let matchday = match matchday {
-        Some(value) => value,
-        None => {
-            let competition = client
-                .get_competition(competition_id)
-                .unwrap_or_else(|error| panic!("{}", error.message));
-            let competition = map_competition(&competition);
-            competition.current_matchday.unwrap()
-        }
-    };
+    competition_ids
+        .iter()
+        .map(|competition_id| {
+            let matchday = match matchday {
+                Some(value) => value,
+                None => {
+                    let competition = client
+                        .get_competition(*competition_id)
+                        .unwrap_or_else(|error| panic!("{}", error.message));
+                    let competition = map_competition(&competition);
+                    competition.current_matchday.unwrap()
+                }
+            };
 
-    let matches = client
-        .get_competition_matches(competition_id, matchday)
-        .unwrap_or_else(|error| panic!("{}", error.message));
-
-    for f in map_fixtures(matches).as_slice() {
-        println!("{}", f);
-    }
+            client
+                .get_competition_matches(*competition_id, matchday)
+                .unwrap_or_else(|error| panic!("{}", error.message))
+        })
+        .map(|match_collection| map_fixtures(match_collection))
+        .flatten()
+        .for_each(|fixture_collection| {
+            println!("{}", fixture_collection);
+        });
 }
