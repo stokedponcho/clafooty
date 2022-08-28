@@ -54,7 +54,7 @@ fn run(command: Command) -> Result<(), Box<dyn std::error::Error>> {
         Command::Matchday {
             competitions,
             matchday,
-        } => print_current_fixtures(client, competitions, matchday),
+        } => print_current_fixtures(configuration, competitions, matchday),
         Command::Standings { competitions } => print_standings(configuration, competitions),
         Command::Today => print_today_fixtures(client),
     };

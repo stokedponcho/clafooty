@@ -31,27 +31,30 @@ impl fmt::Display for FixtureCollection {
 
 impl fmt::Display for Match {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        let format_score = |score: &Score, state| {
-            format!(
-                "{} - {} {}",
-                score.home_team.unwrap(),
-                score.away_team.unwrap(),
-                state
-            )
+        let format_score = |score: &Option<Score>, state| match score {
+            Some(score) => format!("{} - {} {}", score.home_team, score.away_team, state),
+            None => "".to_string(),
         };
-        let score = match &self.status {
-            Some(MatchStatus::Scheduled) => DateTime::<Local>::from(self.utc_date)
+        let score = match (&self.status, self.date, self.datetime) {
+            (Some(MatchStatus::Scheduled), _, Some(time)) => DateTime::<Local>::from(time)
                 .format("%a %d %B %H:%M")
                 .to_string(),
-            Some(MatchStatus::Finished) => format_score(&self.score.full_time, "(FT)"),
-            Some(MatchStatus::InPlay) | Some(MatchStatus::Paused) => {
+            (Some(MatchStatus::Scheduled), Some(date), _) => date.format("%a %d %B").to_string(),
+            (Some(MatchStatus::Finished), _, _) => format_score(&self.score.full_time, "(FT)"),
+            (Some(MatchStatus::InPlay) | Some(MatchStatus::Paused), _, _) => {
                 format_score(&self.score.full_time, "")
             }
-            Some(other) => format!("{:?}", other),
-            _ => String::from("UNKWOWN"),
+            (Some(other), _, _) => format!("{:?}", other),
+            _ => String::from("Unknown"),
         };
 
-        write!(f, "{:>26} {} {}", self.home_team, score, self.away_team)
+        write!(
+            f,
+            "{:>26} {} {}",
+            self.home_team.trim(),
+            score.trim(),
+            self.away_team.trim()
+        )
     }
 }
 

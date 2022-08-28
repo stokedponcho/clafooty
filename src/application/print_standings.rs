@@ -6,7 +6,7 @@ use crate::domain::{Standing, StandingCollection};
 use crate::scraper::Client as Scraper;
 
 trait GetStandings {
-    fn do_get_standings(&self, competition_id: u16) -> Option<StandingCollection>;
+    fn execute(&self, competition_id: u16) -> Option<StandingCollection>;
 }
 
 pub fn print_standings(configuration: Configuration, competition_ids: Vec<u16>) {
@@ -19,7 +19,7 @@ pub fn print_standings(configuration: Configuration, competition_ids: Vec<u16>) 
         .iter()
         .flat_map(|competition_id| {
             for provider in providers.as_slice() {
-                if let Some(collection) = provider.do_get_standings(*competition_id) {
+                if let Some(collection) = provider.execute(*competition_id) {
                     return Some(collection);
                 }
             }
@@ -32,13 +32,13 @@ pub fn print_standings(configuration: Configuration, competition_ids: Vec<u16>) 
 }
 
 impl GetStandings for Scraper {
-    fn do_get_standings(&self, competition_id: u16) -> Option<StandingCollection> {
+    fn execute(&self, competition_id: u16) -> Option<StandingCollection> {
         Scraper::get_standings(competition_id)
     }
 }
 
 impl GetStandings for FootballData {
-    fn do_get_standings(&self, competition_id: u16) -> Option<StandingCollection> {
+    fn execute(&self, competition_id: u16) -> Option<StandingCollection> {
         match self.get_standings(competition_id) {
             Ok(collection) => Some(StandingCollection {
                 competition: map_competition(&collection.competition),

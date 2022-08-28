@@ -1,4 +1,4 @@
-use chrono::{DateTime, Utc};
+use chrono::{DateTime, NaiveDate, Utc};
 
 #[derive(Debug, PartialEq, Clone)]
 pub struct Competition {
@@ -27,7 +27,8 @@ pub enum MatchStatus {
 
 #[derive(Debug, PartialEq)]
 pub struct Match {
-    pub utc_date: DateTime<Utc>,
+    pub date: Option<NaiveDate>,
+    pub datetime: Option<DateTime<Utc>>,
     pub status: Option<MatchStatus>,
     pub home_team: String,
     pub away_team: String,
@@ -37,14 +38,14 @@ pub struct Match {
 #[derive(Debug, PartialEq)]
 pub struct ScoreCard {
     pub winner: Option<String>,
-    pub half_time: Score,
-    pub full_time: Score,
+    pub half_time: Option<Score>,
+    pub full_time: Option<Score>,
 }
 
 #[derive(Debug, PartialEq)]
 pub struct Score {
-    pub home_team: Option<u8>,
-    pub away_team: Option<u8>,
+    pub home_team: u8,
+    pub away_team: u8,
 }
 
 #[derive(Debug)]

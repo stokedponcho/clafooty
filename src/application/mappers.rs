@@ -65,13 +65,17 @@ pub fn map_competition(dto: &dtos::Competition) -> Competition {
 }
 
 pub fn map_match(dto: &dtos::Match) -> Match {
-    let map_score = |dto: &dtos::Score| Score {
-        home_team: dto.home,
-        away_team: dto.away,
+    let map_score = |dto: &dtos::Score| match (dto.home, dto.away) {
+        (Some(home), Some(away)) => Some(Score {
+            home_team: home,
+            away_team: away,
+        }),
+        _ => None,
     };
 
     Match {
-        utc_date: dto.utc_date,
+        date: Some(dto.utc_date.date_naive()),
+        datetime: Some(dto.utc_date),
         status: match dto.status {
             Some(dtos::MatchStatus::FINISHED) => Some(MatchStatus::Finished),
             Some(dtos::MatchStatus::IN_PLAY) => Some(MatchStatus::InPlay),
@@ -96,7 +100,7 @@ pub fn map_match(dto: &dtos::Match) -> Match {
 mod test {
     use super::*;
     use crate::domain;
-    use chrono::{TimeZone, Utc};
+    use chrono::{NaiveDate, TimeZone, Utc};
 
     #[test]
     pub fn test_map_fixtures() {
@@ -161,20 +165,21 @@ mod test {
 
     fn create_match() -> domain::Match {
         domain::Match {
-            utc_date: Utc.ymd(2000, 1, 1).and_hms(0, 0, 0),
+            date: Some(NaiveDate::from_ymd(2000, 1, 1)),
+            datetime: Some(Utc.ymd(2000, 1, 1).and_hms(0, 0, 0)),
             status: Some(domain::MatchStatus::Finished),
             home_team: String::from("home"),
             away_team: String::from("away"),
             score: domain::ScoreCard {
                 winner: Some(String::from("winner")),
-                full_time: domain::Score {
-                    away_team: Some(4),
-                    home_team: Some(5),
-                },
-                half_time: domain::Score {
-                    away_team: Some(1),
-                    home_team: Some(0),
-                },
+                full_time: Some(domain::Score {
+                    away_team: 4,
+                    home_team: 5,
+                }),
+                half_time: Some(domain::Score {
+                    away_team: 1,
+                    home_team: 0,
+                }),
             },
         }
     }
